@@ -1,0 +1,215 @@
+import java.util.Scanner;
+public class DigitCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long n = scanner.nextLong();
+        n = n < 0 ? -n : n;
+        int digits = n == 0 ? 1 : (int) Math.log10(n) + 1;
+        System.out.println(digits);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class FindLargest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        long max = scanner.nextLong();
+        for (int i = 1; i < N; i++) {
+            long num = scanner.nextLong();
+            max = num > max ? num : max;
+        }
+        System.out.println(max);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class FindSmallest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        long min = scanner.nextLong();
+        for (int i = 1; i < N; i++) {
+            long num = scanner.nextLong();
+            min = num < min ? num : min;
+        }
+        System.out.println(min);
+        scanner.close();
+    }
+}
+
+import java.util.Scanner;
+public class CoordinateAnalysis {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long closestX = 0, closestY = 0;
+        long furthestX = 0, furthestY = 0;
+        double closestDist = Double.MAX_VALUE;
+        double furthestDist = 0;
+        double sumDistances = 0;
+        int pointCount = 0;
+        boolean pointsOnAxes = false;
+        while (true) {
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            if (x == 0 && y == 0) break;
+            if (x < 0 && y < 0) continue;
+            if (x == 0 || y == 0) pointsOnAxes = true;
+            double distance = Math.sqrt(x * x + y * y);
+            sumDistances += distance;
+            pointCount++;
+            if (distance < closestDist) {
+                closestDist = distance;
+                closestX = x;
+                closestY = y;
+            }
+            if (distance > furthestDist) {
+                furthestDist = distance;
+                furthestX = x;
+                furthestY = y;
+            }
+        }
+        double averageDistance = sumDistances / pointCount;
+        System.out.println("Closest to origin: " + closestX + " " + closestY);
+        System.out.println("Furthest to origin: " + furthestX + " " + furthestY);
+        System.out.println("Average distance to origin: " + averageDistance);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class DigitCountInInterval {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int A = scanner.nextInt();
+        int B = scanner.nextInt();
+        int[] digitCount = new int[10];
+        int start = Math.min(A, B);
+        int end = Math.max(A, B);
+        for (int i = start; i <= end; i++) {
+            int num = i;
+            if (num < 0) num = -num;
+            if (num == 0) {
+                digitCount[0]++;
+            } else {
+                while (num > 0) {
+                    digitCount[num % 10]++;
+                    num /= 10;
+                }
+            }
+        }
+        for (int i = 0; i <= 9; i++) {
+            System.out.println("Digit " + i + " is printed " + digitCount[i] + " times.");
+        }
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class SineTaylor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double x = scanner.nextDouble();
+        double tolerance = 1e-10;
+        double term = x;
+        double sin = 0;
+        int n = 0;
+        while (Math.abs(term) > tolerance) {
+            sin += term;
+            n++;
+            term = -term * x * x / ((2 * n) * (2 * n + 1));
+        }
+        System.out.println(sin);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class CosineTaylor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double x = scanner.nextDouble();
+        double tolerance = 1e-10;
+        double term = 1;
+        double cos = 0;
+        int n = 0;
+        while (Math.abs(term) > tolerance) {
+            cos += term;
+            n++;
+            term = -term * x * x / ((2 * n - 1) * (2 * n));
+        }
+        System.out.println(cos);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class PrimeCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        boolean isPrime = n >= 2;
+        for (int i = 2; i * i <= n && isPrime; i++) {
+            isPrime = n % i != 0;
+        }
+        System.out.println(isPrime ? "prime" : "not prime");
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class PrimeCountInInterval {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int start = scanner.nextInt();
+        int end = scanner.nextInt();
+        int min = Math.min(start, end);
+        int max = Math.max(start, end);
+        int primeCount = 0;
+        for (int num = min; num <= max; num++) {
+            boolean isPrime = num >= 2;
+            for (int i = 2; i * i <= num && isPrime; i++) {
+                isPrime = num % i != 0;
+            }
+            if (isPrime) primeCount++;
+        }
+        System.out.println(primeCount);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+public class SubsetsOfSizeK {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+        int k = scanner.nextInt();
+        boolean hasDuplicates = false;
+        for (int i = 0; i < input.length() && !hasDuplicates; i++) {
+            for (int j = i + 1; j < input.length(); j++) {
+                if (input.charAt(i) == input.charAt(j)) {
+                    hasDuplicates = true;
+                    break;
+                }
+            }
+        }
+        if (input.length() > 15 || hasDuplicates) {
+            System.out.println("Error: String must be <= 15 characters with unique elements");
+            return;
+        }
+        char[] elements = input.toCharArray();
+        int n = elements.length;
+        int[] combination = new int[k];
+        generateCombinations(elements, combination, 0, 0, k);
+        scanner.close();
+    }
+    public static void generateCombinations(char[] elements, int[] combination, int start, int index, int k) {
+        if (index == k) {
+            System.out.print("{");
+            for (int i = 0; i < k; i++) {
+                System.out.print(elements[combination[i]]);
+                if (i < k - 1) System.out.print(",");
+            }
+            System.out.println("}");
+            return;
+        }
+        for (int i = start; i < elements.length; i++) {
+            combination[index] = i;
+            generateCombinations(elements, combination, i + 1, index + 1, k);
+        }
+    }
+}
