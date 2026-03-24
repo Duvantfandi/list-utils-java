@@ -1,0 +1,43 @@
+package com.project.utils;
+
+import java.util.*;
+import java.util.function.Predicate;
+
+/**
+ * Utility class for list operations such as filtering and sorting.
+ * This class is designed to be reusable in different projects.
+ * 
+ * Author: Your Name
+ * Date: 2026
+ */
+public class ListUtils {
+
+    /**
+     * Filters and sorts a list based on a condition and comparator.
+     *
+     * @param <T> the type of elements in the list
+     * @param inputList the original list
+     * @param filterCondition condition to filter elements
+     * @param comparator comparator to sort elements
+     * @return a new filtered and sorted list
+     */
+    public static <T> List<T> filterAndSortList(
+            List<T> inputList,
+            Predicate<T> filterCondition,
+            Comparator<T> comparator) {
+
+        List<T> resultList = new ArrayList<>();
+
+        // Filter elements
+        for (T element : inputList) {
+            if (filterCondition.test(element)) {
+                resultList.add(element);
+            }
+        }
+
+        // Sort elements
+        resultList.sort(comparator);
+
+        return resultList;
+    }
+}
