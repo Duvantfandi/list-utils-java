@@ -1,0 +1,15 @@
+# Java List Utility
+
+This project provides a reusable utility method to filter and sort lists using Java.
+
+## Features
+- Generic method
+- Functional programming (Predicate, Comparator)
+- Clean and documented code
+
+## How to Run
+1. Compile the project
+2. Run Main.java
+
+## Example Output
+Filtered and Sorted List: [8, 10, 15, 20]
